@@ -18,7 +18,7 @@ def create_student(student: StudentResponse, user_id : int = Depends(get_current
 
     return new_student
 
-@router.get("/students/{student_id}", response_model = list[StudentResponse])
+@router.get("/students/{student_id}", response_model = StudentResponse)
 def get_students(student_id: int, user_id: int = Depends(get_current_user_id), db: Session = Depends(get_db)):
     student = db.query(Student).filter(Student.id == student_id, Student.owner_id == user_id).first()
 

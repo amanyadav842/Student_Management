@@ -4,10 +4,17 @@ from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/login")
 
-SECRET_KEY = "your-secret-key"
-ALGORITHM = "HS256"
+
 
 def create_access_token(user_id: int):
     expire = datetime.now(timezone.utc)+ timedelta(minutes = 30)
