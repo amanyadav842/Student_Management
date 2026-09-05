@@ -19,6 +19,9 @@ app.include_router(students.router)
 def home():
     return{"message" : "Student Management API is running"}
 
+@app.get("/healthz")
+def health_check():
+    return {"status": "ok"}
 # @app.get("/")
 # def home():
 #     return {"message" : "Student Management API is running"}
